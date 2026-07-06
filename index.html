@@ -4,150 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>しえる専用 6×6 オセロソルバー</title>
-
-<style>
-body{
-    margin:0;
-    background:#1f1f1f;
-    color:white;
-    font-family:sans-serif;
-    text-align:center;
-}
-
-h1{
-    margin-top:20px;
-}
-
-#controls{
-    margin:20px;
-}
-
-button{
-    padding:10px 18px;
-    margin:5px;
-    border:none;
-    border-radius:10px;
-    font-size:16px;
-    cursor:pointer;
-}
-
-#board{
-    width:372px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:repeat(6,60px);
-    gap:2px;
-}
-
-.cell{
-    width:60px;
-    height:60px;
-    background:#0c8f39;
-    border:1px solid #0a5e27;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    cursor:pointer;
-}
-
-.black,.white{
-    width:46px;
-    height:46px;
-    border-radius:50%;
-}
-
-.black{
-    background:black;
-}
-
-.white{
-    background:white;
-    border:1px solid #bbb;
-}
-
-#status{
-    margin-top:20px;
-    font-size:18px;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>🧠 しえる専用6×6オセロソルバー</h1>
+<h1>🧠 しえる専用 6×6 オセロソルバー</h1>
 
-<div id="controls">
-
-<button onclick="mode='black'">⚫ 黒</button>
-
-<button onclick="mode='white'">⚪ 白</button>
-
-<button onclick="mode='erase'">🗑 消す</button>
-
-<button onclick="clearBoard()">🧹 全部消す</button>
-
+<div class="toolbar">
+<button id="blackBtn">⚫ 黒</button>
+<button id="whiteBtn">⚪ 白</button>
+<button id="eraseBtn">🗑 消す</button>
+<button id="resetBtn">🧹 全消し</button>
+<button id="startBtn">🎮 初期配置</button>
 </div>
+
+<p id="mode">現在：黒モード</p>
 
 <div id="board"></div>
 
-<p id="status">
-現在：⚫ 黒モード
-</p>
-
-<script>
-
-const board=document.getElementById("board");
-const status=document.getElementById("status");
-
-let mode="black";
-
-function updateStatus(){
-
-    if(mode=="black")
-        status.innerHTML="現在：⚫ 黒モード";
-
-    if(mode=="white")
-        status.innerHTML="現在：⚪ 白モード";
-
-    if(mode=="erase")
-        status.innerHTML="現在：🗑 消すモード";
-
-}
-
-const observer=new MutationObserver(updateStatus);
-
-for(let i=0;i<36;i++){
-
-    const cell=document.createElement("div");
-
-    cell.className="cell";
-
-    cell.onclick=()=>{
-
-        if(mode=="black")
-            cell.innerHTML='<div class="black"></div>';
-
-        if(mode=="white")
-            cell.innerHTML='<div class="white"></div>';
-
-        if(mode=="erase")
-            cell.innerHTML="";
-
-    };
-
-    board.appendChild(cell);
-
-}
-
-function clearBoard(){
-
-    document.querySelectorAll(".cell").forEach(c=>c.innerHTML="");
-
-}
-
-setInterval(updateStatus,100);
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
