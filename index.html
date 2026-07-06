@@ -1,14 +1,95 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>6×6 Othello Solver</title>
-</head>
-<body>
-  <h1>🧠 6×6 Othello Solver</h1>
-  <p>しえる専用オセロ解析ツールへようこそ！</p>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>しえる専用6×6オセロソルバー</title>
 
-  <button>今後ここに「画像を選ぶ」機能を追加します！</button>
+<style>
+body{
+    font-family:sans-serif;
+    background:#1b1b1b;
+    color:white;
+    text-align:center;
+}
+
+#board{
+    width:360px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(6,60px);
+    gap:2px;
+}
+
+.cell{
+    width:60px;
+    height:60px;
+    background:#1b8a3d;
+    border:1px solid #0f5a25;
+    border-radius:4px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.black,.white{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+}
+
+.black{
+    background:black;
+}
+
+.white{
+    background:white;
+}
+</style>
+</head>
+
+<body>
+
+<h2>🧠しえる専用6×6オセロソルバー</h2>
+
+<div id="board"></div>
+
+<script>
+const board=document.getElementById("board");
+
+let turn=1;
+
+for(let i=0;i<36;i++){
+
+    const cell=document.createElement("div");
+    cell.className="cell";
+
+    cell.onclick=()=>{
+
+        if(cell.innerHTML!=""){
+
+            cell.innerHTML="";
+            return;
+        }
+
+        if(turn){
+
+            cell.innerHTML='<div class="black"></div>';
+
+        }else{
+
+            cell.innerHTML='<div class="white"></div>';
+
+        }
+
+        turn=1-turn;
+    }
+
+    board.appendChild(cell);
+
+}
+</script>
+
 </body>
 </html>
