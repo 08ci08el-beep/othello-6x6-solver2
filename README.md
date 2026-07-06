@@ -1,0 +1,1 @@
+# othello-6x6-solver2
